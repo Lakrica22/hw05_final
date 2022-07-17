@@ -32,10 +32,7 @@ def profile(request, username):
     posts = Post.objects.filter(author=author)
     page_obj = paginator_view(request, posts)
     user = request.user
-    if (
-        request.user.is_authenticated and author.following.filter(user=user)
-        .exists()
-    ):
+    if request.user.is_authenticated and (author.following.filter(user=user)):
         following = True
     else:
         following = False
@@ -124,14 +121,12 @@ def profile_follow(request, username):
     user = request.user
     already_followed_user = Follow.objects.filter(user=request.user,
                                                   author=author).exists()
-    subscribe = Follow.objects.create(user=request.user, author=author)
     if user == author:
         return redirect('posts:profile', username=username)
     if already_followed_user:
         return redirect('posts:profile', username=username)
-    else:
-        subscribe
-        return redirect('posts:profile', username=username)
+    Follow.objects.create(user=request.user, author=author)
+    return redirect('posts:profile', username=username)
 
 
 @login_required
