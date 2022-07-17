@@ -48,7 +48,8 @@ class StaticURLTests(TestCase):
             'users/password_change_done.html': '/auth/password_change/done/',
             'users/password_change_form.html': '/auth/password_change/',
             'users/password_reset_complete.html': '/auth/reset/done/',
-            'users/password_reset_confirm.html': '/auth/reset/<uidb64>/<token>/',
+            'users/password_reset_confirm.html': (
+                '/auth/reset/<uidb64>/<token>/'),
             'users/password_reset_done.html': '/auth/password_reset/done/',
             'users/password_reset_form.html': '/auth/password_reset_form/',
         }

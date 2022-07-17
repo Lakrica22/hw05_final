@@ -144,7 +144,7 @@ PASSWORD_CHANGE__REDIRECT_URL = 'users:password_change_done'
 CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CACHES = {
     'default': {

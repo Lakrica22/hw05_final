@@ -48,7 +48,8 @@ class StaticURLTests(TestCase):
                 self.assertTemplateUsed(response, template)
 
     def test_url_exists_at_desired_location_for_unauthorizes_client(self):
-        """Проверка страниц create и posts/1/edit и /1/comment/ на доступность
+        """Проверка страниц create и posts/1/edit и /1/comment/
+        на доступность
         авторизованному пользователю, и posts/1/edit автору поста."""
         pages = {
             self.authorized_client.get('/create/').status_code:
