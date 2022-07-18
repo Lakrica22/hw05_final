@@ -110,7 +110,7 @@ class PostCreateFormTests(TestCase):
         form_data = {
             'text': 'Комментарий',
         }
-        response = self.author_client.post(
+        response = self.authorized_client.post(
             reverse('posts:add_comment', args=('1')),
             data=form_data,
             follow=True
@@ -119,7 +119,7 @@ class PostCreateFormTests(TestCase):
             response, reverse('posts:post_detail', kwargs={'post_id': '1'})
         )
         self.assertEqual(Comment.objects.count(), comments + 1)
-        response2 = self.author_client.get(
+        response2 = self.authorized_client.get(
             reverse('posts:post_detail', kwargs={'post_id': '1'})
         )
         self.assertContains(response2, 'Комментарий')

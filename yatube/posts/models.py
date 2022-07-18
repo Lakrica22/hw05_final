@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+
 User = get_user_model()
 letters_in_title: int = 15
 
@@ -91,5 +92,10 @@ class Follow(models.Model):
         on_delete=models.CASCADE,
     )
 
-    def __str__(self) -> str:
-        return self.title
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'author'],
+                name='unique_follow'
+            )
+        ]

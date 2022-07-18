@@ -58,7 +58,7 @@ class StaticURLTests(TestCase):
             HTTPStatus.FOUND.value,
             self.author_client.get('/posts/1/edit/').status_code:
             HTTPStatus.OK.value,
-            self.author_client.get('/1/comment/').status_code:
+            self.authorized_client.get('/1/comment/').status_code:
             HTTPStatus.OK.value,
         }
         for url, stat_code in pages.items():
