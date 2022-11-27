@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from http import HTTPStatus
+from django.core.cache import cache
 
 from posts.models import Post, Group
 
@@ -32,6 +33,7 @@ class StaticURLTests(TestCase):
 
         self.author_client = Client()
         self.author_client.force_login(self.user_author)
+        cache.clear()
 
     def test_urls_uses_correct_template(self):
         """URL-адрес использует соответствующий шаблон."""

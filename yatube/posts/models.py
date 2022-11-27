@@ -76,6 +76,9 @@ class Comment(models.Model):
         verbose_name='Пост',
     )
 
+    class Meta:
+        ordering = ('-created',)
+
     def __str__(self):
         return self.text[:letters_in_title]
 

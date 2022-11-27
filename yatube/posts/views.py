@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_page
 
 from .models import Post, Group, User, Follow
 from .forms import PostForm, CommentForm
@@ -89,6 +90,15 @@ def post_edit(request, post_id):
     else:
         context = {'form': form, 'is_edit': True, 'post': post}
         return render(request, 'posts/create_post.html', context)
+
+
+@login_required
+def post_delete(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.user != post.author:
+        return redirect("posts:post_detail", post_id=post_id)
+    post.delete()
+    return redirect('posts:profile', request.user.username)
 
 
 @login_required

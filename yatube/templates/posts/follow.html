@@ -6,7 +6,7 @@
 {% include 'posts/includes/switcher.html' %}
 {% load thumbnail %}
 {% load cache %}
-{% cache 20 index_page %}
+{% cache 20 follow_page %}
 
   {% for post in page_obj %}
     <div class="container py-5">     
@@ -34,6 +34,6 @@
      {% if not forloop.last %}<hr>{% endif %}
     </div>  
     {% endfor %}
-    {% endcache %} 
+    {% endcache %}
   {% include 'posts/includes/paginator.html' %}
 {% endblock %} 

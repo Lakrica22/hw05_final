@@ -181,6 +181,7 @@ class PaginatorViewsTest(TestCase):
         self.guest_client = Client()
         self.authorized_client = Client()
         self.authorized_client.force_login(self.user)
+        cache.clear()
 
     def test_pages_first_page_contains_ten_records(self):
         """Проверка работы паджинатора."""
